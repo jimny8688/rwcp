@@ -9,6 +9,7 @@
     "dev:web": "npm run dev --prefix web",
     "build": "npm run build --prefix web",
     "start": "node server/index.js",
+    "supabase:setup": "powershell -ExecutionPolicy Bypass -File scripts/supabase-setup.ps1",
     "postinstall": "npm install --prefix web"
   },
   "dependencies": {

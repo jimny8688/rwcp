@@ -1,4 +1,7 @@
 node_modules/
 web/dist/
 web/node_modules/
+web/.env
+supabase/.env
+supabase/.temp/
 server/data/store.json

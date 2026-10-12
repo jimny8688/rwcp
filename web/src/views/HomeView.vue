@@ -126,8 +126,11 @@ async function onStart() {
     sessionStorage.removeItem('citySoulPre');
     sessionStorage.removeItem('citySoulResult');
     router.push('/quiz');
-  } catch {
-    error.value = '网络异常，请稍后重试';
+  } catch (e) {
+    error.value =
+      e?.message?.includes('后端 API') || e?.message?.includes('JSON')
+        ? '服务连接失败，请稍后重试或联系客服'
+        : e?.message || '网络异常，请稍后重试';
   } finally {
     loading.value = false;
   }

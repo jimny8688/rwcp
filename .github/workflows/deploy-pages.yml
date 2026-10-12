@@ -29,8 +29,7 @@ jobs:
       - name: Install & build
         working-directory: web
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          # Supabase keys: web/.env.production (secrets 若为空会覆盖 env 文件，故不在此注入)
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           npm ci

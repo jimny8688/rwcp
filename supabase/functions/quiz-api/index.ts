@@ -96,12 +96,25 @@ function formatPasswordRow(p: Record<string, unknown>) {
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
-  const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-  const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+  const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+  const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
   const adminPassword = Deno.env.get('ADMIN_PASSWORD') || 'citysoul-admin';
   const adminJwtSecret = Deno.env.get('ADMIN_JWT_SECRET') || adminPassword;
 
-  const db = createClient(supabaseUrl, serviceKey);
+  if (!supabaseUrl || !serviceKey) {
+    return json(
+      {
+        ok: false,
+        message:
+          'Server misconfigured: missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY. Redeploy quiz-api from Supabase Dashboard.'
+      },
+      500
+    );
+  }
+
+  const db = createClient(supabaseUrl, serviceKey, {
+    auth: { autoRefreshToken: false, persistSession: false }
+  });
 
   let body: Record<string, unknown> = {};
   try {

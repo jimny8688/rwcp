@@ -73,6 +73,11 @@ $$;
 revoke all on function public.consume_quiz_attempt(text) from public;
 grant execute on function public.consume_quiz_attempt(text) to service_role;
 
+grant usage on schema public to postgres, service_role;
+grant all on table public.quiz_passwords to postgres, service_role;
+grant all on table public.quiz_results to postgres, service_role;
+grant usage, select on all sequences in schema public to postgres, service_role;
+
 insert into public.quiz_passwords (code, max_attempts, used_attempts, enabled, batch_id, note)
 values
   ('DEMO2026', 3, 0, true, 'SEED', '体验密码'),

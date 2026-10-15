@@ -3,11 +3,11 @@
     <div class="hero">
       <span class="hero-badge">✦ SOUL CITY ✦ 人境匹配</span>
       <h1>你的城市灵魂<br /><em>重生你会锁哪座城？</em></h1>
-      <p class="subtitle">28 道中国情境题 · 10 座灵魂城市 · 找到与你同频的那座城</p>
+      <p class="subtitle">30 道题目 · 10 座灵魂城市 · 找到与你同频的那座城</p>
       <div class="hero-stats">
+        <div class="stat"><b>30</b><span>道题目</span></div>
         <div class="stat"><b>10</b><span>灵魂城市</span></div>
         <div class="stat"><b>6</b><span>气质维度</span></div>
-        <div class="stat"><b>≈8</b><span>分钟航程</span></div>
       </div>
     </div>
 
@@ -52,13 +52,6 @@
         </div>
       </div>
     </div>
-
-    <div class="glass-card note">
-      <p>测评基于生活方式与价值观匹配框架，仅供娱乐与自我探索。</p>
-      <p class="demo">体验码 <code @click="fillDemo">DEMO2026</code> · 点击可填入</p>
-    </div>
-
-    <router-link to="/admin/login" class="admin-entry">管理员入口</router-link>
   </div>
 </template>
 
@@ -84,10 +77,6 @@ const features = [
 onMounted(() => {
   ticketNo.value = String(Math.floor(100000 + Math.random() * 900000));
 });
-
-function fillDemo() {
-  password.value = 'DEMO2026';
-}
 
 async function onStart() {
   error.value = '';
@@ -239,28 +228,4 @@ label {
   line-height: 1.5;
 }
 
-.note p {
-  margin: 0 0 8px;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.demo code {
-  cursor: pointer;
-  background: rgba(255, 209, 102, 0.15);
-  padding: 2px 8px;
-  border-radius: 6px;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.admin-entry {
-  display: block;
-  text-align: center;
-  margin-top: 8px;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.28);
-  text-decoration: none;
-}
 </style>

@@ -94,7 +94,7 @@ watch(
   height: 100%;
   width: 0;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), #ffd166);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), var(--primary));
 }
 
 .bar.animate {
@@ -111,7 +111,7 @@ watch(
 .num {
   font-size: 13px;
   font-weight: 800;
-  color: #ffd166;
+  color: var(--primary-deep);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }

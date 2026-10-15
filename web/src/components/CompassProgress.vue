@@ -51,25 +51,25 @@ const labels = ['启程', '识城', '深潜', '靠岸'];
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 209, 102, 0.95);
+  color: var(--primary-deep);
 }
 
 .count {
   font-size: 20px;
   font-weight: 800;
-  color: #fff;
+  color: var(--primary-dim);
   font-variant-numeric: tabular-nums;
 }
 
 .count small {
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--muted);
 }
 
 .track {
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(138, 116, 207, 0.2);
   border-radius: 999px;
   overflow: visible;
   position: relative;
@@ -77,11 +77,11 @@ const labels = ['启程', '识城', '深潜', '靠岸'];
 
 .fill {
   height: 100%;
-  background: linear-gradient(90deg, #2d8a6a, #ffd166, #ff9f43);
+  background: linear-gradient(90deg, #bfaef2, #8a74cf, #6d5aa8);
   border-radius: 999px;
   transition: width 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
   position: relative;
-  box-shadow: 0 0 16px rgba(255, 209, 102, 0.45);
+  box-shadow: 0 0 16px rgba(138, 116, 207, 0.45);
 }
 
 .dot {
@@ -91,9 +91,9 @@ const labels = ['启程', '识城', '深潜', '靠岸'];
   transform: translateY(-50%);
   width: 14px;
   height: 14px;
-  background: #ffd166;
+  background: var(--primary);
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 209, 102, 0.8);
+  box-shadow: 0 0 12px rgba(138, 116, 207, 0.65);
   animation: pulse 1.5s ease infinite;
 }
 
@@ -112,11 +112,11 @@ const labels = ['启程', '识城', '深潜', '靠岸'];
   justify-content: space-between;
   margin-top: 6px;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--muted);
 }
 
 .ms.done {
-  color: rgba(255, 209, 102, 0.85);
+  color: var(--primary-deep);
   font-weight: 600;
 }
 </style>

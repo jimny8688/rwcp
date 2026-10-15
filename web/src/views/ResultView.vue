@@ -237,7 +237,7 @@ function goHome() {
 .loading-card,
 .empty {
   text-align: center;
-  color: #fff;
+  color: var(--primary-dim);
 }
 
 .loading-card p,

@@ -167,7 +167,7 @@ function finish() {
 .q-tag {
   font-size: 12px;
   font-weight: 700;
-  color: #2d9cdb;
+  color: var(--primary);
 }
 
 .q-id {
@@ -208,12 +208,12 @@ function finish() {
 .finishing {
   text-align: center;
   margin-top: 12px;
-  color: #fff;
+  color: var(--primary-dim);
 }
 
 .finishing p {
   margin: 0 0 12px;
   font-size: 14px;
-  color: var(--gold);
+  color: var(--primary-deep);
 }
 </style>

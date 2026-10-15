@@ -15,7 +15,7 @@ import { useRoute } from 'vue-router';
 import CityBackdrop from './components/CityBackdrop.vue';
 
 const route = useRoute();
-const showFloaters = computed(() => route.name === 'home' || route.name === 'quiz');
+const showFloaters = computed(() => route.name === 'quiz');
 const isAdmin = computed(() => String(route.name || '').startsWith('admin'));
 
 watch(

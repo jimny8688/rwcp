@@ -152,7 +152,7 @@ async function saveImage() {
     const canvas = await html2canvas(captureRef.value, {
       scale: Math.min(window.devicePixelRatio || 2, 2),
       useCORS: true,
-      backgroundColor: '#0f2847',
+      backgroundColor: '#d4c4f5',
       scrollY: -window.scrollY,
       windowWidth: document.documentElement.scrollWidth
     });
@@ -220,6 +220,7 @@ async function retake() {
   sessionStorage.removeItem('citySoulPre');
   sessionStorage.removeItem('citySoulResult');
   sessionStorage.removeItem('citySoulQuizIndex');
+  sessionStorage.removeItem('citySoulQuestionOrder');
   shareId.value = '';
   router.push('/quiz');
 }

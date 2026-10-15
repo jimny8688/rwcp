@@ -1,12 +1,13 @@
 <template>
   <div class="page quiz-page">
     <CompassProgress
+      v-if="totalSteps"
       :current="currentIndex + 1"
       :total="totalSteps"
       :stage-label="stageLabel"
     />
 
-    <Transition name="quiz-slide" mode="out-in">
+    <Transition v-if="currentQuestion" name="quiz-slide" mode="out-in">
       <div :key="currentQuestion.id" class="glass-card light quiz-card">
         <div class="q-meta">
           <span class="q-tag">{{ stageEmoji }} {{ stageLabel }}</span>
@@ -57,12 +58,13 @@
 import { computed, onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import CompassProgress from '../components/CompassProgress.vue';
-import { preQuestions, questions } from '../data/questions.js';
+import { preQuestions } from '../data/questions.js';
 import { computeResult } from '../utils/scoring.js';
+import { getShuffledSituationalQuestions } from '../utils/quizFlow.js';
 
 const router = useRouter();
-const flow = [...preQuestions, ...questions];
-const totalSteps = flow.length;
+const flow = ref([]);
+const totalSteps = computed(() => flow.value.length);
 const currentIndex = ref(0);
 const answers = reactive({});
 const preAnswers = reactive({});
@@ -70,8 +72,8 @@ const popIndex = ref(-1);
 const finishing = ref(false);
 const letters = ['A', 'B', 'C', 'D'];
 
-const currentQuestion = computed(() => flow[currentIndex.value]);
-const isLast = computed(() => currentIndex.value === totalSteps - 1);
+const currentQuestion = computed(() => flow.value[currentIndex.value]);
+const isLast = computed(() => currentIndex.value === totalSteps.value - 1);
 const displayNum = computed(() =>
   currentIndex.value < preQuestions.length
     ? currentIndex.value + 1
@@ -88,13 +90,16 @@ onMounted(() => {
     router.replace('/');
     return;
   }
+  flow.value = [...preQuestions, ...getShuffledSituationalQuestions()];
   try {
     const savedPre = JSON.parse(sessionStorage.getItem('citySoulPre') || '{}');
     const savedAns = JSON.parse(sessionStorage.getItem('citySoulAnswers') || '{}');
     Object.assign(preAnswers, savedPre);
     Object.assign(answers, savedAns);
     const savedIdx = sessionStorage.getItem('citySoulQuizIndex');
-    if (savedIdx) currentIndex.value = Math.min(Number(savedIdx), totalSteps - 1);
+    if (savedIdx) {
+      currentIndex.value = Math.min(Number(savedIdx), totalSteps.value - 1);
+    }
   } catch {
     /* ignore */
   }

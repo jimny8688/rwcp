@@ -501,11 +501,7 @@ body {
   padding-right: 16px;
 }
 
-.capture-root {
-  background: linear-gradient(180deg, #0f2847 0%, #1a4d4a 100%);
-  padding: 4px;
-  border-radius: var(--radius);
-}
+/* Result report outer frame lives in ResultContent.vue scoped styles */
 
 .route-fade-enter-active,
 .route-fade-leave-active {

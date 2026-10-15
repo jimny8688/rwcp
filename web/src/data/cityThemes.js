@@ -58,6 +58,17 @@ export const DEFAULT_THEME = {
   emoji: '🧭'
 };
 
+/** Public hero banners: web/public/cities/{cityId}.jpg */
+export function getCityHeroImage(cityId) {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}cities/${cityId}.jpg`;
+}
+
 export function getCityTheme(cityId) {
-  return CITY_THEMES[cityId] || DEFAULT_THEME;
+  const theme = CITY_THEMES[cityId] || DEFAULT_THEME;
+  const id = CITY_THEMES[cityId] ? cityId : 'chengdu';
+  return {
+    ...theme,
+    heroImage: getCityHeroImage(id)
+  };
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="soul-radar">
+  <div class="soul-radar" :class="variant">
     <div v-for="d in dimKeys" :key="d" class="row">
       <span class="label">{{ labels[d] }}</span>
       <div class="bar-wrap">
@@ -24,7 +24,9 @@ import { computed, onMounted, reactive, watch } from 'vue';
 const props = defineProps({
   values: { type: Object, required: true },
   labels: { type: Object, required: true },
-  animated: { type: Boolean, default: true }
+  animated: { type: Boolean, default: true },
+  /** light: white report card; dark: legacy on dark hero */
+  variant: { type: String, default: 'light' }
 });
 
 const dimKeys = ['R', 'S', 'V', 'E', 'T', 'A'];
@@ -83,11 +85,20 @@ watch(
   color: rgba(255, 255, 255, 0.75);
 }
 
+.soul-radar.light .label {
+  color: var(--muted-dark);
+  font-weight: 700;
+}
+
 .bar-wrap {
   height: 8px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 999px;
   overflow: hidden;
+}
+
+.soul-radar.light .bar-wrap {
+  background: rgba(138, 116, 207, 0.15);
 }
 
 .bar {
